@@ -1,0 +1,260 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+
+    background: #eef3f7;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 25px;
+}
+
+.pagina-historico {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+}
+
+.card-historico {
+    width: 900px;
+    min-height: 650px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+
+/* TOPO */
+
+.topo-card {
+    position: relative;
+
+    background: linear-gradient(
+        180deg,
+        #07a9ef,
+        #087ee8
+    );
+
+    color: white;
+
+    text-align: center;
+
+    padding: 35px 45px 40px;
+}
+
+.topo-card h1 {
+    font-size: 32px;
+
+    margin-top: 10px;
+    margin-bottom: 8px;
+}
+
+.topo-card p {
+    opacity: 0.9;
+
+    font-size: 15px;
+}
+
+.voltar {
+    position: absolute;
+
+    top: 25px;
+    left: 30px;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: bold;
+}
+
+.voltar:hover {
+    opacity: 0.8;
+}
+
+.perfil {
+    position: absolute;
+
+    top: 25px;
+    right: 30px;
+
+    font-weight: bold;
+}
+
+.icone-historico {
+    width: 65px;
+    height: 65px;
+
+    margin: 10px auto 0;
+
+    border-radius: 50%;
+
+    background: white;
+    color: #087ee8;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 30px;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+
+/* SALDO */
+
+.saldo-box {
+    margin: 30px 45px 20px;
+
+    background: #f3f8fc;
+
+    border-radius: 15px;
+
+    padding: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.saldo-box span {
+    color: #707070;
+}
+
+.saldo-box strong {
+    color: #183153;
+
+    font-size: 23px;
+}
+
+
+/* LISTA */
+
+.lista-transacoes {
+    padding: 10px 45px 40px;
+}
+
+.transacao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 5px;
+
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.transacao-info h3 {
+    color: #183153;
+
+    font-size: 17px;
+
+    margin-bottom: 5px;
+}
+
+.descricao {
+    color: #707070;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.data {
+    color: #888;
+
+    font-size: 13px;
+}
+
+.valor {
+    font-weight: bold;
+
+    font-size: 16px;
+}
+
+.entrada {
+    color: #14b884;
+}
+
+.saida {
+    color: #e84c4c;
+}
+
+.sem-transacoes {
+    color: #707070;
+
+    padding: 20px 0;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .card-historico {
+        width: 100%;
+    }
+
+    .saldo-box {
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+
+    .lista-transacoes {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .perfil {
+        display: none;
+    }
+}
+
+.filtro-extrato {
+    margin: 0 45px 20px;
+}
+
+.filtro-extrato label {
+    display: block;
+
+    color: #183153;
+    font-weight: bold;
+
+    margin-bottom: 6px;
+}
+
+.filtro-extrato select {
+    height: 45px;
+
+    padding: 0 15px;
+
+    border: 1px solid #d8e0e6;
+    border-radius: 22px;
+
+    background: white;
+
+    outline: none;
+
+    font-size: 14px;
+}

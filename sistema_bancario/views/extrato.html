@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Extrato - Sistema Bancário</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/extrato.css') }}"
+    >
+
+</head>
+
+<body>
+
+<div class="pagina-historico">
+
+    <div class="card-historico">
+
+
+        <!-- ===================================== -->
+        <!-- TOPO -->
+        <!-- ===================================== -->
+
+        <div class="topo-card">
+
+            <a
+                href="{{ url_for('auth.home') }}"
+                class="voltar"
+            >
+                ← Voltar
+            </a>
+
+
+            <div class="perfil">
+
+                <span>
+                    {{ cliente.nome }}
+                </span>
+
+            </div>
+
+
+            <div class="icone-historico">
+                ☰
+            </div>
+
+
+            <h1>
+                Extrato
+            </h1>
+
+
+            <p>
+                Consulte as movimentações da sua conta.
+            </p>
+
+        </div>
+
+
+        <!-- ===================================== -->
+        <!-- SALDO -->
+        <!-- ===================================== -->
+
+        <div class="saldo-box">
+
+            <span>
+                Saldo atual
+            </span>
+
+
+            <strong>
+                R$ {{ "%.2f"|format(conta.saldo) }}
+            </strong>
+
+        </div>
+
+
+        <!-- ===================================== -->
+        <!-- FILTRO DOS ÚLTIMOS 12 MESES -->
+        <!-- ===================================== -->
+
+        <div class="filtro-extrato">
+
+            <form
+                method="GET"
+                action="{{ url_for('conta.extrato') }}"
+            >
+
+                <div class="campo-filtro">
+
+                    <label for="periodo">
+                        Mês
+                    </label>
+
+
+                    <select
+                        name="periodo"
+                        id="periodo"
+                        onchange="this.form.submit()"
+                    >
+
+                        {% for mes in meses %}
+
+                            <option
+                                value="{{ mes.valor }}"
+                                {% if periodo_selecionado == mes.valor %}
+                                    selected
+                                {% endif %}
+                            >
+                                {{ mes.nome }}
+                            </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+            </form>
+
+        </div>
+
+
+        <!-- ===================================== -->
+        <!-- LISTA DE TRANSAÇÕES -->
+        <!-- ===================================== -->
+
+        <div class="lista-transacoes">
+
+
+            {% for transacao in transacoes %}
+
+
+                <div class="transacao">
+
+
+                    <!-- INFORMAÇÕES DA TRANSAÇÃO -->
+
+                    <div class="transacao-info">
+
+
+                        <h3>
+                            {{ transacao.tipo }}
+                        </h3>
+
+
+                        <!-- NOME DE QUEM ENVIOU OU RECEBEU -->
+
+                        {% if transacao.descricao %}
+
+                            <p class="descricao">
+                                {{ transacao.descricao }}
+                            </p>
+
+                        {% endif %}
+
+
+                        <!-- DATA -->
+
+                        <p class="data">
+                            {{ transacao.data.strftime("%d/%m/%Y %H:%M") }}
+                        </p>
+
+
+                    </div>
+
+
+                    <!-- ================================= -->
+                    <!-- VALOR DA TRANSAÇÃO -->
+                    <!-- ================================= -->
+
+
+                    {% if
+                        transacao.tipo == "Depósito"
+                        or transacao.tipo == "DEPÓSITO"
+                        or transacao.tipo == "Pix recebido"
+                        or transacao.tipo == "Transferência recebida"
+                    %}
+
+
+                        <!-- ENTRADA -->
+
+                        <span class="valor entrada">
+
+                            + R$
+                            {{ "%.2f"|format(transacao.valor) }}
+
+                        </span>
+
+
+                    {% else %}
+
+
+                        <!-- SAÍDA -->
+
+                        <span class="valor saida">
+
+                            - R$
+                            {{ "%.2f"|format(transacao.valor) }}
+
+                        </span>
+
+
+                    {% endif %}
+
+
+                </div>
+
+
+            {% else %}
+
+
+                <!-- NENHUMA TRANSAÇÃO NO MÊS -->
+
+                <div class="sem-transacoes">
+
+                    <p>
+                        Nenhuma movimentação encontrada neste mês.
+                    </p>
+
+                </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

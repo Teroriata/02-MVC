@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Início - Sistema Bancário</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/index.css') }}"
+    >
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <div class="topo">
+
+        <div class="topo-menu">
+
+            <a
+                href="{{ url_for('auth.logout') }}"
+                class="sair"
+            >
+                SAIR
+            </a>
+
+            <div class="perfil">
+
+                <span>
+                    {{ cliente.nome }}
+                </span>
+
+                <div class="perfil-icone">
+                    👤
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="saldo">
+
+            <p>Saldo atual</p>
+
+            <h1>
+                {% if conta %}
+                    R$ {{ "%.2f"|format(conta.saldo) }}
+                {% else %}
+                    R$ 0,00
+                {% endif %}
+            </h1>
+
+        </div>
+
+    </div>
+
+
+    <div class="acoes">
+
+        <a
+            href="{{ url_for('conta.transferir') }}"
+            class="acao"
+        >
+
+            <div class="acao-icone">
+                ⇄
+            </div>
+
+            <span>
+                Transferência
+            </span>
+
+        </a>
+
+
+        <a
+            href="{{ url_for('conta.receber_pix') }}"
+            class="acao"
+        >
+
+            <div class="acao-icone">
+                <img
+                    src="{{ url_for('static', filename='images/pix.png') }}"
+                    alt="Pix"
+                    class="icone-pix"
+                >
+            </div>
+
+            <span>
+                Receber Pix
+            </span>
+
+        </a>
+
+
+        <a
+    href="{{ url_for('conta.extrato') }}"
+    class="acao"
+>
+
+    <div class="acao-icone">
+        ☰
+    </div>
+
+    <span>
+        Extrato
+    </span>
+
+</a>
+
+    </div>
+
+
+    <div
+        class="historico"
+        id="historico"
+    >
+
+        <h2>
+            Histórico recente
+        </h2>
+
+
+        {% for movimentacao in movimentacoes %}
+
+            <div class="movimentacao">
+
+                <div class="movimentacao-info">
+
+                       <h3>
+                            {{ movimentacao.tipo }}
+                        </h3>
+
+                        {% if movimentacao.descricao %}
+                            <p class="descricao">
+                                {{ movimentacao.descricao }}
+                            </p>
+                        {% endif %}
+
+                        <p class="data">
+                            {{ movimentacao.data.strftime("%d/%m/%Y %H:%M") }}
+                        </p>
+
+                </div>
+
+
+                {% if movimentacao.tipo == "Depósito"
+                    or movimentacao.tipo == "DEPÓSITO"
+                    or movimentacao.tipo == "Pix recebido"
+                    or movimentacao.tipo == "Transferência recebida" %}
+
+                    <span class="valor entrada">
+                        + R$ {{ "%.2f"|format(movimentacao.valor) }}
+                    </span>
+
+                {% else %}
+
+                    <span class="valor saida">
+                        - R$ {{ "%.2f"|format(movimentacao.valor) }}
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+        {% else %}
+
+            <p class="sem-movimentacao">
+                Nenhuma movimentação realizada.
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

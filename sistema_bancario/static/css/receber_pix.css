@@ -1,0 +1,289 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+
+    background: #eef3f7;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 25px;
+}
+
+.pagina-pix {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+}
+
+.card-pix {
+    width: 470px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+
+/* TOPO */
+
+.topo-card {
+    position: relative;
+
+    background: linear-gradient(
+        180deg,
+        #07a9ef,
+        #087ee8
+    );
+
+    color: white;
+
+    text-align: center;
+
+    padding: 35px 40px 45px;
+}
+
+.topo-card h1 {
+    font-size: 30px;
+
+    margin-top: 12px;
+    margin-bottom: 8px;
+}
+
+.topo-card p {
+    font-size: 15px;
+
+    opacity: 0.9;
+
+    line-height: 1.5;
+}
+
+
+/* VOLTAR */
+
+.voltar {
+    position: absolute;
+
+    top: 22px;
+    left: 25px;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.voltar:hover {
+    opacity: 0.8;
+}
+
+
+/* ÍCONE */
+
+.icone-pix {
+    width: 65px;
+    height: 65px;
+
+    margin: 15px auto 0;
+
+    background: white;
+    color: #087ee8;
+
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 30px;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+
+/* MENSAGEM */
+
+.mensagem {
+    margin: 20px 35px 0;
+
+    padding: 12px 15px;
+
+    border-radius: 10px;
+
+    background: #e8f3ff;
+
+    color: #087ee8;
+
+    font-size: 14px;
+}
+
+
+/* SALDO */
+
+.saldo {
+    margin: 30px 35px 25px;
+
+    background: #f3f8fc;
+
+    border-radius: 15px;
+
+    padding: 20px;
+}
+
+.saldo div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.saldo span {
+    color: #707070;
+
+    font-size: 14px;
+}
+
+.saldo strong {
+    color: #183153;
+
+    font-size: 24px;
+}
+
+
+/* FORMULÁRIO */
+
+form {
+    padding: 0 35px 35px;
+}
+
+.campo {
+    margin-bottom: 22px;
+}
+
+.campo label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #183153;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+/* CAMPO VALOR */
+
+.campo-valor {
+    display: flex;
+    align-items: center;
+
+    border: 1px solid #d8e0e6;
+
+    border-radius: 25px;
+
+    overflow: hidden;
+
+    transition: 0.2s;
+}
+
+.campo-valor:focus-within {
+    border-color: #087ee8;
+
+    box-shadow:
+        0 0 0 3px rgba(8, 126, 232, 0.10);
+}
+
+.campo-valor span {
+    padding-left: 18px;
+
+    color: #183153;
+
+    font-weight: bold;
+}
+
+.campo-valor input {
+    width: 100%;
+    height: 50px;
+
+    padding: 0 16px;
+
+    border: none;
+
+    outline: none;
+
+    font-size: 15px;
+}
+
+
+/* BOTÃO */
+
+.botao-receber {
+    width: 100%;
+    height: 52px;
+
+    border: none;
+
+    border-radius: 26px;
+
+    background: #087ee8;
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.25s;
+}
+
+.botao-receber:hover {
+    background: #14d39a;
+
+    transform: translateY(-2px);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 12px;
+    }
+
+    .card-pix {
+        width: 100%;
+    }
+
+    .topo-card {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    .saldo {
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+
+    form {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+}

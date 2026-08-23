@@ -1,0 +1,286 @@
+<!-- views/login.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sistema Bancário</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #eef3f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            width: 900px;
+            min-height: 520px;
+            display: flex;
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .login-left {
+            width: 45%;
+            background: linear-gradient(180deg, #07a9ef, #087ee8);
+            color: white;
+            padding: 60px 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-left h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .login-left p {
+            margin-bottom: 35px;
+            opacity: 0.9;
+        }
+
+        .campo {
+            margin-bottom: 18px;
+        }
+
+        .campo label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 14px;
+        }
+
+        .campo input {
+            width: 100%;
+            padding: 14px 16px;
+            border: none;
+            border-radius: 25px;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .login-button {
+            width: 100%;
+            height: 50px;
+
+            padding: 0;
+            margin: 0;
+
+            border: none;
+            border-radius: 25px;
+
+            background: #14d39a;
+            color: white;
+
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .cadastro-link {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 100%;
+            height: 50px;
+
+            margin-top: 10px;
+            padding: 0;
+
+            border-radius: 25px;
+            background: #14d39a;
+
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+
+            box-sizing: border-box;
+        }
+
+        .login-button:hover,
+        .cadastro-link:hover {
+            background: #10ba86;
+        }
+
+        .mensagem {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.18);
+        }
+
+       .login-right {
+            width: 55%;
+            background: white;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            padding: 30px;
+            overflow: hidden;
+        }
+
+       .icone {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .icone img {
+            width: 300px;
+            max-width: 90%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .login-right h2 {
+            color: #183153;
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .login-right p {
+            color: #606060;
+            font-size: 17px;
+            line-height: 1.5;
+            max-width: 400px;
+        }
+
+        .login-right h2 {
+            color: #183153;
+            margin-bottom: 10px;
+        }
+
+        .login-right p {
+            color: #707070;
+            max-width: 330px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 800px) {
+           .login-container {
+                width: 1000px;
+                max-width: 95%;
+                height: 600px;
+
+                display: flex;
+
+                background: white;
+                border-radius: 18px;
+                overflow: hidden;
+
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            }
+
+            .login-left {
+                width: 40%;
+            }
+
+            .login-right {
+                width: 60%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <div class="login-left">
+
+        <h1>Bem-vindo</h1>
+        <p>Acesse o Sistema Bancário</p>
+
+        {% with mensagens = get_flashed_messages() %}
+            {% if mensagens %}
+                {% for mensagem in mensagens %}
+                    <div class="mensagem">
+                        {{ mensagem }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST">
+
+            <div class="campo">
+                <label>Usuário</label>
+                <div class="campo">
+                    <label></label>
+
+                    <input
+                        type="text"
+                        name="cpf"
+                        placeholder="Digite seu CPF"
+                        required
+                    >
+                </div>
+            </div>
+
+            <div class="campo">
+                <label>Senha</label>
+                <input
+                    type="password"
+                    name="senha"
+                    placeholder="Digite sua senha"
+                    required
+                >
+            </div>
+
+            <button
+                type="submit"
+                class="login-button"
+            >
+                ENTRAR
+            </button>
+
+            <a
+                href="{{ url_for('cliente.cadastrar_cliente') }}"
+                class="cadastro-link"
+            >
+                Criar conta
+            </a>
+
+
+            
+            
+        </form>
+
+    </div>
+
+
+    <div class="login-right">
+
+        <div class="icone">
+    <img src="{{ url_for('static', filename='images/banco.jpg') }}">
+</div>
+        <h2>Sistema Bancário</h2>
+
+        <p>
+            Gerencie clientes, contas,
+            depósitos, saques e histórico
+            de movimentações.
+        </p>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Receber Pix - Sistema Bancário</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/receber_pix.css') }}"
+    >
+</head>
+
+<body>
+
+<div class="pagina-pix">
+
+    <div class="card-pix">
+
+
+        <!-- TOPO -->
+
+        <div class="topo-card">
+
+            <a
+                href="{{ url_for('auth.home') }}"
+                class="voltar"
+            >
+                ← Voltar
+            </a>
+
+
+            <div class="icone-pix">
+                ↓
+            </div>
+
+
+            <h1>
+                Receber Pix
+            </h1>
+
+
+            <p>
+                Informe o valor que deseja receber na sua conta.
+            </p>
+
+        </div>
+
+
+        <!-- MENSAGENS -->
+
+        {% with mensagens = get_flashed_messages() %}
+
+            {% if mensagens %}
+
+                {% for mensagem in mensagens %}
+
+                    <div class="mensagem">
+                        {{ mensagem }}
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+        {% endwith %}
+
+
+        <!-- SALDO -->
+
+        <div class="saldo">
+
+            <div>
+
+                <span>
+                    Saldo atual
+                </span>
+
+
+                <strong>
+
+                    {% if conta %}
+
+                        R$ {{ "%.2f"|format(conta.saldo) }}
+
+                    {% else %}
+
+                        R$ 0,00
+
+                    {% endif %}
+
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- FORMULÁRIO -->
+
+        <form method="POST">
+
+            <div class="campo">
+
+                <label for="valor">
+                    Valor a receber
+                </label>
+
+
+                <div class="campo-valor">
+
+                    <span>
+                        R$
+                    </span>
+
+
+                    <input
+                        type="number"
+                        id="valor"
+                        name="valor"
+                        step="0.01"
+                        min="0.01"
+                        placeholder="0,00"
+                        autocomplete="off"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="botao-receber"
+            >
+                RECEBER PIX
+            </button>
+
+        </form>
+
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

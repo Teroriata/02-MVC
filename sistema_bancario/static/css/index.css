@@ -1,0 +1,391 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+
+body {
+    min-height: 100vh;
+
+    background: #eef3f7;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 25px;
+}
+
+
+/* CONTAINER */
+
+.dashboard {
+    width: 990px;
+    min-height: 660px;
+
+    background: white;
+
+    border-radius: 20px;
+    overflow: hidden;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+
+/* TOPO */
+
+.topo {
+    position: relative;
+
+    min-height: 300px;
+
+    color: white;
+
+    padding: 35px 55px 70px;
+
+    overflow: hidden;
+
+    background: white;
+}
+
+
+/* GRANDE ESFERA AZUL */
+.topo::before {
+    content: "";
+
+    position: absolute;
+
+    width: 1400px;
+    height: 700px;
+
+    left: 50%;
+    top: -390px;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        180deg,
+        #07a9ef,
+        #087ee8
+    );
+
+    z-index: 0;
+}
+
+
+/* GARANTE QUE O CONTEÚDO FIQUE ACIMA DA ESFERA */
+.topo-menu,
+.saldo {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* MENU SUPERIOR */
+
+.topo-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/* SAIR */
+
+.sair {
+    color: #ff3b3b;
+
+    text-decoration: none;
+    font-weight: bold;
+
+    font-size: 16px;
+
+    transition: 0.2s;
+}
+
+.sair:hover {
+    color: #cc0000;
+}
+
+
+/* PERFIL */
+
+.perfil {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    font-weight: bold;
+}
+
+.perfil-icone {
+    width: 46px;
+    height: 46px;
+
+    border-radius: 50%;
+
+    background: white;
+    color: #087ee8;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 23px;
+
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+
+/* SALDO */
+
+.saldo {
+    text-align: center;
+
+    margin-top: 50px;
+}
+
+.saldo p {
+    font-size: 16px;
+
+    margin-bottom: 8px;
+}
+
+.saldo h1 {
+    font-size: 46px;
+
+    font-weight: bold;
+}
+
+
+/* AÇÕES */
+
+.acoes {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    gap: 70px;
+
+    margin-top: 35px;
+    margin-bottom: 50px;
+
+    position: relative;
+    z-index: 2;
+}
+
+.acao {
+    width: 130px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    color: #183153;
+
+    font-weight: bold;
+
+    transition: 0.25s;
+}
+
+.acao-icone {
+    width: 72px;
+    height: 72px;
+
+    border-radius: 50%;
+
+    background: #087ee8;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 30px;
+
+    margin-bottom: 12px;
+
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.18);
+
+    transition: 0.25s;
+}
+
+.acao:hover .acao-icone {
+    background: #14d39a;
+
+    transform: translateY(-5px);
+}
+
+.acao:hover {
+    color: #10ba86;
+}
+
+
+/* HISTÓRICO */
+
+.historico {
+    padding: 0 55px 40px;
+}
+
+.historico h2 {
+    color: #183153;
+
+    font-size: 27px;
+
+    margin-bottom: 25px;
+}
+
+.movimentacao {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 18px 5px;
+
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.movimentacao-info h3 {
+    color: #183153;
+
+    font-size: 16px;
+
+    margin-bottom: 5px;
+}
+
+.movimentacao-info p {
+    color: #888;
+
+    font-size: 13px;
+}
+
+
+/* VALORES */
+
+.valor {
+    font-weight: bold;
+
+    font-size: 16px;
+}
+
+.entrada {
+    color: #14b884;
+}
+
+.saida {
+    color: #e84c4c;
+}
+
+
+/* SEM MOVIMENTAÇÃO */
+
+.sem-movimentacao {
+    color: #707070;
+
+    font-size: 15px;
+
+    padding: 10px 0;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .dashboard {
+        width: 100%;
+    }
+
+    .topo {
+        padding: 30px 25px 90px;
+
+        border-bottom-left-radius: 50% 70px;
+        border-bottom-right-radius: 50% 70px;
+    }
+
+    .perfil span {
+        font-size: 14px;
+    }
+
+    .saldo h1 {
+        font-size: 38px;
+    }
+
+    .acoes {
+        gap: 15px;
+
+        margin-top: -30px;
+    }
+
+    .acao {
+        width: 100px;
+
+        font-size: 13px;
+    }
+
+    .acao-icone {
+        width: 60px;
+        height: 60px;
+
+        font-size: 25px;
+    }
+
+    .historico {
+        padding: 0 25px 30px;
+    }
+
+}
+
+.movimentacao-info .descricao {
+    color: #183153;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.movimentacao-info .descricao {
+    color: #707070;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 3px;
+    margin-bottom: 4px;
+}
+
+.movimentacao-info .data {
+    color: #888;
+    font-size: 13px;
+}
+
+.icone-pix {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.acao-icone {
+    width: 80px;
+    height: 80px;
+
+    border-radius: 50%;
+    background: #087ee8;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    font-size: 35px;
+}

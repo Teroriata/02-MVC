@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Transferência - Sistema Bancário</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/transferir.css') }}"
+    >
+</head>
+
+<body>
+
+<div class="pagina-transferencia">
+
+    <div class="card-transferencia">
+
+        <!-- TOPO -->
+
+        <div class="topo-card">
+
+            <a
+                href="{{ url_for('auth.home') }}"
+                class="voltar"
+            >
+                ← Voltar
+            </a>
+
+            <div class="icone-transferencia">
+                ⇄
+            </div>
+
+            <h1>
+                Transferência
+            </h1>
+
+            <p>
+                Envie dinheiro para outro cliente usando o CPF.
+            </p>
+
+        </div>
+
+
+        <!-- MENSAGENS -->
+
+        {% with mensagens = get_flashed_messages() %}
+
+            {% if mensagens %}
+
+                {% for mensagem in mensagens %}
+
+                    <div class="mensagem">
+                        {{ mensagem }}
+                    </div>
+
+                {% endfor %}
+
+            {% endif %}
+
+        {% endwith %}
+
+
+        <!-- SALDO -->
+
+        <div class="saldo">
+
+            <div>
+
+                <span>
+                    Saldo disponível
+                </span>
+
+                <strong>
+
+                    {% if conta %}
+
+                        R$ {{ "%.2f"|format(conta.saldo) }}
+
+                    {% else %}
+
+                        R$ 0,00
+
+                    {% endif %}
+
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- FORMULÁRIO -->
+
+        <form method="POST">
+
+            <div class="campo">
+
+                <label for="cpf_destino">
+                    CPF do destinatário
+                </label>
+
+                <input
+                    type="text"
+                    id="cpf_destino"
+                    name="cpf_destino"
+                    placeholder="000.000.000-00"
+                    maxlength="14"
+                    autocomplete="off"
+                    required
+                >
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="valor">
+                    Valor da transferência
+                </label>
+
+                <div class="campo-valor">
+
+                    <span>
+                        R$
+                    </span>
+
+                    <input
+                        type="number"
+                        id="valor"
+                        name="valor"
+                        step="0.01"
+                        min="0.01"
+                        placeholder="0,00"
+                        autocomplete="off"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="botao-transferir"
+            >
+                TRANSFERIR
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
