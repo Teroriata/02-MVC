@@ -32,7 +32,7 @@ O objetivo é que a interface, a lógica de controle e as regras de negócio nã
 
 ## Diagrama da Arquitetura
 
-![Diagrama Arquitetural - Sistema Bancário MVC](diagrama.png)
+![Diagrama Arquitetural - Sistema Bancário MVC](DIAGRAMA.png)
 
 ## Como o MVC foi aplicado neste projeto
 
