@@ -1,4 +1,13 @@
-# Sistema Bancário — Arquitetura MVC
+# Sistema Bancário
+---
+## Integrantes
+
+| Nome | Matrícula |
+|---|---|
+| Ana Liz Bomfim Gomes | 202302598 |
+| Mateus Silva de Sousa | 201802778 |
+
+## Definição
 
 Trabalho acadêmico de um sistema bancário simples, desenvolvido em **Python** com o microframework **Flask**, seguindo o padrão arquitetural **MVC (Model-View-Controller)**. O sistema permite cadastro de clientes, login, consulta de saldo, depósitos, transferências entre contas (via CPF), recebimento e consulta do extrato mensal, com persistência em banco **SQLite** através do **SQLAlchemy**.
 
